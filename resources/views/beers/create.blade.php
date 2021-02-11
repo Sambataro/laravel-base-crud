@@ -12,28 +12,16 @@
         </ul>
     </div>
     @endif  
-    <form  action="{{ route('beers.store') }}" method="POST">
+    <form class="col-6 p-0"  action="{{ route('beers.store') }}" method="POST">
         @csrf
         @method('POST')
 
-        <div class="form-group d-flex inline-flex">
-            <label for="name">Nome</label>
-            <input class="ml-5" type="text" name="name" placeholder="Nome">
-        </div>
-
-        <div class="form-group d-flex inline-flex">
-            <label for="brand">Brand</label>
-            <input class="ml-5" type="text" name="brand" placeholder="Brand">    
-        </div>
-
-        <div class="form-group d-flex inline-flex">
-            <label for="graduation">Gradi</label>
-            <input class="ml-5" type="text" name="graduation" placeholder="Graduazione alcolica">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-outline-dark">SALVA</button>
-            <a href="{{ route('beers.index') }}" class="btn btn-outline-dark">BACK TO BEERS</a>
-        </div>
+     
+            <input class="form-control mt-3" type="text" name="name" placeholder="Nome">
+            <input class="form-control mt-3" type="text" name="brand" placeholder="Brand">    
+            <input class="form-control mt-3" type="text" name="graduation" placeholder="Graduazione alcolica">
+            <button type="submit" class="btn btn-outline-dark mt-3">SALVA</button>
+            <a href="{{ route('beers.index') }}" class="btn btn-outline-dark mt-3">BACK TO BEERS</a>
     </form>
  
 @endsection
