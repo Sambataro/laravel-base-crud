@@ -40,7 +40,7 @@ class BeerController extends Controller
         $Data = $request->validate([
             'name' => 'required|max:50',
             'brand' => 'required|max:50',
-            'graduation' => 'required|max:2',
+            'graduation' => 'required|numeric|max:2',
         ]);
         $data = $request->all();
         $beer = new Beer;
