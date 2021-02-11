@@ -7,7 +7,7 @@
                 <th>ID</th>
                 <th>NOME</th>
                 <th>BRAND</th>
-                <th>GRADUAZIONE</th>
+                <th>GRADAZIONE</th>
                 <th>CREATO IL</th>
                 <th>AGGIORNATO IL</th>
             </tr>
@@ -28,6 +28,6 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('beers.create')}}" class="btn btn-outline-dark">CREA NUOVA BIRRA</a>
+    <a href="{{ route('beers.create')}}" class="btn btn-outline-dark mb-5">CREA NUOVA BIRRA</a>
 @endsection
     
