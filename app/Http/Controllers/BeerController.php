@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Beer;
+use Book;
 
 class BeerController extends Controller
 {
@@ -25,7 +26,7 @@ class BeerController extends Controller
      */
     public function create()
     {
-        //
+        return view('beers.create');
     }
 
     /**
@@ -36,7 +37,21 @@ class BeerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Data = $request->validate([
+            'name' => 'required|max:50',
+            'brand' => 'required|max:50',
+            'graduation' => 'required|max:2',
+        ]);
+        $data = $request->all();
+        $beer = new Beer;
+        $beer->name = $data["name"];
+        $beer->brand = $data["brand"];
+        $beer->graduation = $data["graduation"];
+        $beer->save();
+
+        $beer = Beer::orderBy('id', 'desc')->first();
+
+        return redirect()->route('beers.show', $beer);
     }
 
     /**
@@ -45,9 +60,10 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( Beer $beer)
     {
-        $beer = Beer::find($id);
+        // $beer = Beer::find($id);  findOrFail
+        return view('beers.show', compact('beer'));
     }
 
     /**
