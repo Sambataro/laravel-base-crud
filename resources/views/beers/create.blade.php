@@ -17,9 +17,9 @@
         @method('POST')
 
      
-            <input class="form-control mt-3" type="text" name="name" placeholder="Nome">
-            <input class="form-control mt-3" type="text" name="brand" placeholder="Brand">    
-            <input class="form-control mt-3" type="text" name="graduation" placeholder="Graduazione alcolica">
+            <input class="form-control mt-3" type="text" name="name" id="name" placeholder="Nome">
+            <input class="form-control mt-3" type="text" name="brand" id="brand" placeholder="Brand">    
+            <input class="form-control mt-3" type="text" name="graduation" id="graduation" placeholder="Graduazione alcolica">
             <button type="submit" class="btn btn-outline-dark mt-3">SALVA</button>
             <a href="{{ route('beers.index') }}" class="btn btn-outline-dark mt-3">BACK TO BEERS</a>
     </form>
