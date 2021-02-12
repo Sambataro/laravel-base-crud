@@ -8,6 +8,11 @@ use Book;
 
 class BeerController extends Controller
 {
+    private $beerValidation = [
+        'name' => 'required|max:50',
+        'brand' => 'required|max:50',
+        'graduation' => 'required|numeric',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -37,11 +42,7 @@ class BeerController extends Controller
      */
     public function store(Request $request)
     {
-        $Data = $request->validate([
-            'name' => 'required|max:50',
-            'brand' => 'required|max:50',
-            'graduation' => 'required|numeric',
-        ]);
+        $data = $request->validate($this->beerValidation);
         $data = $request->all();
         $beer = new Beer;
         // $beer->name = $data["name"];
@@ -73,9 +74,9 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Beer $beer)
     {
-        //
+        return view('beers.edit', compact('beer'));
     }
 
     /**
@@ -85,9 +86,12 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Beer $beer)
     {
-        //
+        $data = $request->all();
+        $data = $request->validate($this->beerValidation);
+        $beer->update($data);
+        return redirect()->route('beers.index')->with('message', 'Birra aggiornata');
     }
 
     /**
@@ -96,8 +100,11 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Beer $beer)
     {
-        //
+        $name = $beer->name;
+        $beer->delete();
+        return redirect()->route('beers.index')->with('message', 'la birra'. ' '.  $name .' '.  ' è stata cancellata correttamente');
+
     }
 }
