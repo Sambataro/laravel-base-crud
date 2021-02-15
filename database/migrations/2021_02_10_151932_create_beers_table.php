@@ -17,7 +17,7 @@ class CreateBeersTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('brand', 50);
-            $table->decimal('graduation', 2, 1);
+            $table->tinyInteger('graduation', 2, 1);
             $table->timestamps();
         });
     }

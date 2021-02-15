@@ -10,7 +10,7 @@ class BeerController extends Controller
     private $beerValidation = [
         'name' => 'required|max:50',
         'brand' => 'required|max:50',
-        'graduation' => 'required|numeric',
+        'graduation' => 'required|string|max:3',
     ];
     /**
      * Display a listing of the resource.
