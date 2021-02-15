@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Beer;
-use Book;
 
 class BeerController extends Controller
 {
@@ -49,6 +48,7 @@ class BeerController extends Controller
         // $beer->brand = $data["brand"];
         // $beer->graduation = $data["graduation"];
         $beer->fill($data);
+        $name = $beer->name;
         $beer->save();
 
         $beer = Beer::orderBy('id', 'desc')->first();
@@ -90,8 +90,9 @@ class BeerController extends Controller
     {
         $data = $request->all();
         $data = $request->validate($this->beerValidation);
+        $name = $beer->name;
         $beer->update($data);
-        return redirect()->route('beers.index')->with('message', 'Birra aggiornata');
+        return redirect()->route('beers.index')->with('message', 'la birra'. ' '.  $name .' '.  ' è stata aggiornata correttamente');
     }
 
     /**
